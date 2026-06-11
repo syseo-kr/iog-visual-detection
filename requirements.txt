@@ -1,0 +1,17 @@
+# --- Reproduction (reproduce.py) needs only these three ---
+numpy>=1.24
+pandas>=2.0
+scikit-learn>=1.3
+
+# --- Full pipeline (code/00-06) additionally needs the following ---
+# (these steps also require the raw screenshots, which are not redistributed)
+Pillow>=10.0
+scikit-image>=0.21
+opencv-python>=4.8
+imagehash>=4.3
+openpyxl>=3.1
+torch>=2.0
+open-clip-torch>=2.20
+openai>=1.0
+anthropic>=0.25
+google-generativeai>=0.5
