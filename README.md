@@ -88,4 +88,4 @@ and scikit-learn (Pedregosa et al., 2011).
 ## Citation
 
 If you use this code or data, please cite the paper (citation to be added on acceptance) and
-this archive (https://doi.org/10.5281/zenodo.20636927).
+this archive (https://doi.org/10.5281/zenodo.20636926).
