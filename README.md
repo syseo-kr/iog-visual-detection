@@ -82,10 +82,10 @@ classification prompt is embedded in the script.
 
 ## Third-party software
 
-CLIP (Radford et al., 2021) via OpenCLIP (Ilharco et al.; cite its Zenodo DOI),
+CLIP (Radford et al., 2021) via OpenCLIP (Ilharco et al.; https://doi.org/10.5281/zenodo.18794821),
 and scikit-learn (Pedregosa et al., 2011).
 
 ## Citation
 
 If you use this code or data, please cite the paper (citation to be added on acceptance) and
-this archive (Zenodo DOI to be assigned on deposit).
+this archive (https://doi.org/10.5281/zenodo.20636927).
