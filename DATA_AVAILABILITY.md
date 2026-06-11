@@ -2,7 +2,7 @@
 
 **Code.** All analysis code is in `code/`, with `reproduce.py` regenerating every reported
 result table from the released derived data. The repository is archived at Zenodo
-(DOI: https://doi.org/10.5281/zenodo.20636927).
+(DOI: https://doi.org/10.5281/zenodo.20636926).
 
 **Control images.** The general-website (non-IOG) control images are publicly available from
 the Kaggle datasets cited in the paper.
