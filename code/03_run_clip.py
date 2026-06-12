@@ -30,6 +30,10 @@ import torch, open_clip
 IOG_DIR    = "iog"        # folder of IOG screenshots
 NONIOG_DIR = "non_iog"    # folder of non-IOG screenshots
 # ------------------------------
+# NOTE: IOG_DIR / NONIOG_DIR hold the STANDARDIZED screenshots (224x224, bicubic,
+# JPEG q90, identical to 01_extract_features.py), so CLIP encodes the same
+# provenance-standardized image given to the LMMs and the handcrafted pipeline.
+# See README, 'Notes on inputs and protocol'.
 
 MODEL, PRETRAINED = "ViT-B-32", "openai"   # standard light CLIP; for a stronger run use "ViT-L-14"
 BATCH = 32

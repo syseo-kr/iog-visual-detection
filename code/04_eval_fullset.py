@@ -49,7 +49,9 @@ full_folds=list(StratifiedGroupKFold(5,shuffle=True,random_state=SEED).split(np.
 # dedup: one representative per cluster, label = majority
 K=cid.max()+1; reps=[]; ry=[]
 for c in range(K):
-    idx=np.nonzero(cid==c)[0]; reps.append(int(idx[0])); ry.append(int(round(y[idx].mean())))
+    idx=np.nonzero(cid==c)[0]; maj=int(round(y[idx].mean()))
+    cand=idx[y[idx]==maj]  # representative drawn from the cluster's majority-label members
+    reps.append(int(cand[0] if len(cand) else idx[0])); ry.append(maj)
 reps=np.array(reps); ry=np.array(ry)
 rf=np.full(len(reps),-1)
 for fi,(_,te) in enumerate(StratifiedKFold(5,shuffle=True,random_state=SEED).split(reps,ry)): rf[te]=fi
@@ -94,7 +96,7 @@ def show(title,folds,bal):
     def line(nm,mu,sd):
         rows[nm]=(mu.tolist(),sd.tolist())
         print(f"{nm:<24}"+"".join(f" {mu[i]*100:5.1f}±{sd[i]*100:3.1f}" for i in range(5)))
-    line("Majority floor",*fixed(np.zeros(n,int),folds))
+    line("All-negative baseline",*fixed(np.zeros(n,int),folds))
     line("pHash-kNN (k=3)",*knn(folds))
     for nm,mk in classical(bal).items(): line(nm+(" (bal)" if bal else ""),*cv(mk,X,folds))
     line("CLIP zero-shot (t=.5)",*fixed(zpred,folds))

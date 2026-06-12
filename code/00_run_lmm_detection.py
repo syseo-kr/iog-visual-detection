@@ -22,6 +22,10 @@ load_dotenv()
 # 설정 변수
 BATCH_SIZE = 10  # 한 번에 처리할 이미지 개수
 IMAGE_FOLDER = "img"  # 이미지가 있는 폴더 경로
+# NOTE: this folder holds the STANDARDIZED screenshots (224x224, bicubic, JPEG q90,
+# identical to 01_extract_features.py) -- the LMMs receive provenance-standardized
+# input, the same image given to CLIP and the handcrafted-feature pipeline.
+# See README, 'Notes on inputs and protocol'.
 OUTPUT_CSV = "gambling_results.csv"  # 결과를 저장할 CSV 파일 경로
 
 # LLM 모델 설정

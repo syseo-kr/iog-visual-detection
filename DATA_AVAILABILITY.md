@@ -2,7 +2,7 @@
 
 **Code.** All analysis code is in `code/`, with `reproduce.py` regenerating every reported
 result table from the released derived data. The repository is archived at Zenodo
-(DOI: https://doi.org/10.5281/zenodo.20636926).
+(DOI: to be assigned on deposit).
 
 **Control images.** The general-website (non-IOG) control images are publicly available from
 the Kaggle datasets cited in the paper.
@@ -21,5 +21,6 @@ replaced by an opaque id. Domains do not appear in the release. The raw screensh
 only to re-extract features and embeddings; every downstream result is reproducible from the
 deposited derived data alone.
 
-**Third-party software.** CLIP (Radford et al., 2021) via OpenCLIP (Ilharco et al.; https://doi.org/10.5281/zenodo.18794821)
+**Third-party software.** CLIP (Radford et al., 2021) via OpenCLIP (Ilharco et al.; doi.org/10.5281/zenodo.18794821)
 and scikit-learn (Pedregosa et al., 2011).
+
