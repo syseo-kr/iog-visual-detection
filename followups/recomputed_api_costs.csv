@@ -1,0 +1,7 @@
+provider,condition,batches,images,input_tokens,output_tokens,separately_logged_thinking_tokens,latency_ms_per_image,estimated_USD_for_images,estimated_USD_per_1000_images
+claude,pad1024,16,160,227328,1952,n/r,323.765,0.711264,4.4454
+claude,pad224,16,160,18528,1952,n/r,198.004,0.084864,0.5304
+gemini,pad1024,16,160,49680,2024,17706,672.626,0.064229,0.401431
+gemini,pad224,16,160,49680,2004,15166,595.519,0.057829,0.361431
+openai,pad1024,16,160,108320,14885,n/r,2270.894,0.28425,1.776563
+openai,pad224,16,160,41120,14870,n/r,1267.479,0.2001,1.250625

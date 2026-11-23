@@ -1,0 +1,7 @@
+population,condition,n,accuracy_pct,precision_pct,recall_pct,f1_pct,specificity_pct
+all,original,2519,94.0453,94.7123,93.6923,94.1995,94.4217
+all,training_purged,2519,93.7674,93.8603,94.0769,93.9685,93.4372
+chaining,original,178,91.573,93.5714,95.6204,94.5848,78.0488
+chaining,training_purged,178,84.2697,85.1613,96.3504,90.411,43.9024
+non_chaining,original,2341,94.2332,94.8517,93.4652,94.1533,94.9915
+non_chaining,training_purged,2341,94.4895,95.0348,93.8091,94.418,95.1613

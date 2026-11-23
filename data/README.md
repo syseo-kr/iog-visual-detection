@@ -19,8 +19,8 @@ Analysis set: 2,519 screenshots (1,300 IOG, 1,219 control), in 1,775 near-duplic
 | `gpt_pred`, `claude_pred`, `gemini_pred` | LMM zero-shot predictions (1 = IOG, 0 = not) |
 | `clip_zs_b32_piog`, `clip_zs_b32_pred` | CLIP ViT-B/32 zero-shot P(IOG) and thresholded (>=0.5) prediction |
 | `clip_zs_l14_piog`, `clip_zs_l14_pred` | CLIP ViT-L/14 zero-shot P(IOG) and prediction |
-| `phash` | 64-bit perceptual hash (hex), used by the pHash-kNN baseline |
-| `md5` | MD5 of the standardized image (duplicate detection) |
+| `phash` | 64-bit perceptual hash (hex) of the 224x224 standardized JPEG, used by the pHash-kNN baseline |
+| `md5` | MD5 hash of the original image-file bytes before standardization (exact-duplicate identification) |
 
 ## provenance_metadata.csv
 Original (pre-standardization) capture metadata, used for the provenance-confound ablation.

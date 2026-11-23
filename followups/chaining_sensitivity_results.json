@@ -1,0 +1,125 @@
+{
+  "n_images": 2519,
+  "n_clusters": 1775,
+  "chaining_clusters": [
+    242,
+    254,
+    402,
+    414,
+    419,
+    429,
+    449,
+    466,
+    472,
+    485,
+    526,
+    528,
+    529,
+    557,
+    568,
+    572,
+    1344,
+    1460,
+    1465
+  ],
+  "chaining_images": 178,
+  "max_cluster_diameter": 32,
+  "baseline_reproduced_exactly": true,
+  "removed_training_per_fold": [
+    160,
+    155,
+    113,
+    133,
+    151
+  ],
+  "results": {
+    "all": {
+      "baseline": {
+        "n": 2519,
+        "accuracy": 94.04525605398968,
+        "precision": 94.71228615863141,
+        "recall": 93.6923076923077,
+        "f1": 94.19953596287704,
+        "specificity": 94.42165709598031,
+        "tp": 1218,
+        "tn": 1151,
+        "fp": 68,
+        "fn": 82
+      },
+      "chaining_excluded_training": {
+        "n": 2519,
+        "accuracy": 93.76736800317586,
+        "precision": 93.86032233307752,
+        "recall": 94.07692307692308,
+        "f1": 93.9684978870534,
+        "specificity": 93.43724364232978,
+        "tp": 1223,
+        "tn": 1139,
+        "fp": 80,
+        "fn": 77
+      },
+      "accuracy_delta_pp": -0.2778880508138144,
+      "changed_predictions": 41,
+      "paired_cluster_p": 0.7961601919904004
+    },
+    "non_chaining_test": {
+      "baseline": {
+        "n": 2341,
+        "accuracy": 94.2332336608287,
+        "precision": 94.85165794066317,
+        "recall": 93.4651762682717,
+        "f1": 94.15331312256389,
+        "specificity": 94.99151103565364,
+        "tp": 1087,
+        "tn": 1119,
+        "fp": 59,
+        "fn": 76
+      },
+      "chaining_excluded_training": {
+        "n": 2341,
+        "accuracy": 94.4895343870141,
+        "precision": 95.03484320557492,
+        "recall": 93.8091143594153,
+        "f1": 94.41800086542622,
+        "specificity": 95.16129032258064,
+        "tp": 1091,
+        "tn": 1121,
+        "fp": 57,
+        "fn": 72
+      },
+      "accuracy_delta_pp": 0.2563007261854011,
+      "changed_predictions": 26,
+      "paired_cluster_p": 0.3269836508174591
+    },
+    "chaining_test": {
+      "baseline": {
+        "n": 178,
+        "accuracy": 91.57303370786516,
+        "precision": 93.57142857142857,
+        "recall": 95.62043795620438,
+        "f1": 94.58483754512635,
+        "specificity": 78.04878048780488,
+        "tp": 131,
+        "tn": 32,
+        "fp": 9,
+        "fn": 6
+      },
+      "chaining_excluded_training": {
+        "n": 178,
+        "accuracy": 84.26966292134831,
+        "precision": 85.16129032258064,
+        "recall": 96.35036496350365,
+        "f1": 90.41095890410959,
+        "specificity": 43.90243902439025,
+        "tp": 132,
+        "tn": 18,
+        "fp": 23,
+        "fn": 5
+      },
+      "accuracy_delta_pp": -7.303370786516851,
+      "changed_predictions": 15,
+      "paired_cluster_p": 0.5012749362531873
+    }
+  },
+  "interpretation": "Fixed-fold sensitivity to removing chaining clusters from training. This does not isolate the causal effect of union-find transitivity from all other properties of the removed screenshots."
+}

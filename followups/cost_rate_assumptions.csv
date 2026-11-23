@@ -1,0 +1,4 @@
+provider,model,input_USD_per_million,output_USD_per_million,note
+openai,gpt-5-2025-08-07,1.25,10,GPT output includes reasoning; no separate breakdown retained
+claude,claude-sonnet-4-5-20250929,3,15,standard non-cached hypothetical rate
+gemini,gemini-2.5-flash,0.3,2.5,thinking billed with output; totals in separate log field

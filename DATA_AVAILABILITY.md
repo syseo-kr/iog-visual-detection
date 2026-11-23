@@ -1,26 +1,17 @@
-# Data and code availability statement
+# Data and code availability, revised candidate
 
-**Code.** All analysis code is in `code/`, with `reproduce.py` regenerating every reported
-result table from the released derived data. The repository is archived at Zenodo
-(DOI: to be assigned on deposit).
+This archive updates the previously released anonymized derived data and as-run
+analysis code. The archived parent DOI is 10.5281/zenodo.20636926; a new version
+DOI must be inserted following actual deposition. Derived features, CLIP image
+embeddings, labels, pHash components, fold assignments and predictions are in `data/`.
+Additional published analyses use the anonymized records in `followups/`.
 
-**Control images.** The general-website (non-IOG) control images are publicly available from
-the Kaggle datasets cited in the paper.
+Raw KRA screenshots are third-party restricted data and are not redistributed.
+The public control datasets are cited in the paper. No image pixels, domain strings,
+actual local image paths, API credentials, or original API response bodies are
+included. Reproduction of the derived-data evaluations does not require these.
+Re-extraction of features and querying of LMM APIs requires authorized raw images,
+model access and current provider API credentials.
 
-**IOG screenshots.** The illegal-online-gambling screenshots were provided by the Korea Racing
-Authority (KRA) and depict unlicensed gambling operations. As third-party data that identify
-illegal services, their public redistribution raises legal and safety concerns; they are
-therefore not deposited here and are available from the KRA upon reasonable request, subject to
-the KRA's terms.
-
-**Derived data.** To enable full reproduction without the raw screenshots, all derived data
-required to regenerate every table and figure are released in `data/`: extracted handcrafted
-features, CLIP image embeddings, perceptual hashes, ground-truth labels, cross-validation fold
-assignments, original capture metadata, and per-model predictions, with each site identifier
-replaced by an opaque id. Domains do not appear in the release. The raw screenshots are needed
-only to re-extract features and embeddings; every downstream result is reproducible from the
-deposited derived data alone.
-
-**Third-party software.** CLIP (Radford et al., 2021) via OpenCLIP (Ilharco et al.; doi.org/10.5281/zenodo.18794821)
-and scikit-learn (Pedregosa et al., 2011).
-
+These statements describe this local candidate package, not an already completed
+new Zenodo publication or a verification of the new DOI. Consult `README.md`.

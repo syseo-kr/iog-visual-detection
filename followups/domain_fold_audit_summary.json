@@ -1,0 +1,19 @@
+{
+  "canonical_rows": 2519,
+  "canonical_unique_md5": 2080,
+  "image_files_scanned": 2530,
+  "matched_image_files": 2524,
+  "matched_unique_md5": 2080,
+  "matched_files_with_hostname": 1524,
+  "matched_files_without_hostname": 1000,
+  "matched_files_with_ambiguous_id": 549,
+  "canonical_rows_with_filename_domain_evidence": 1519,
+  "exact_md5_crossfold_groups": 0,
+  "unique_hostnames": 1524,
+  "hostnames_with_multiple_distinct_images": 0,
+  "hostnames_crossing_folds": 0,
+  "registered_domain_analysis_available": true,
+  "unique_registered_domains": 1517,
+  "registered_domains_with_multiple_distinct_images": 3,
+  "registered_domains_crossing_folds": 3
+}

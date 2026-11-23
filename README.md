@@ -1,109 +1,86 @@
-# Leakage and provenance confounds in visual detection of illegal online gambling websites
+# IOG visual-detection revision reproducibility archive
 
-Code and derived data for the study *"Leakage and provenance confounds in visual
-detection of illegal online gambling websites: a controlled evaluation of large
-multimodal models and lightweight vision baselines."*
+This is a candidate *new version* of the original Zenodo release, based directly on
+`iog-visual-detection-v1.0.2.zip` (28 original entries). It retains the previously
+released derived dataset, as-run analysis code, code/data licenses, and `reproduce.py`.
+It has **not** been deposited to Zenodo by this package builder.
 
-The study evaluates three frontier large multimodal models (GPT-5, Claude Sonnet 4.5,
-Gemini 2.5 Flash) against low-cost vision baselines (handcrafted color/texture features,
-perceptual-hash matching, and CLIP zero-shot and linear-probe) for classifying website
-screenshots as illegal online gambling (IOG) or not, under a leakage-controlled protocol.
+## What changed
 
-## What is in this repository
+* `data/samples.csv`: corrected majority-label representative flags and deduplicated
+  fold metadata (8 representative flags and 8 dedup fold values changed). All 2,519
+  labels, 1,775 pHash component IDs, original model predictions and embeddings are unchanged.
+* Corrected the data dictionary: `md5` hashes original image-file bytes, whereas
+  `phash` is computed after 224x224 standardization.
+* `followups/` contains anonymized per-screenshot predictions for the 600-screenshot
+  four-prompt experiment, three transformation conditions on 160 screenshots,
+  cluster chaining sensitivity, CV prediction records, source-domain audit aggregates,
+  provider API token/time usage summaries, and CLIP CPU timing summaries.
+* `analysis/verify_release.py` provides a fast deterministic check of data alignment
+  and key original/new results without retraining.
+* `analysis/reproduce_followups.py` regenerates descriptive metrics for the two
+  LMM follow-up studies and CPU/API usage tables.
+* `analysis/reproduce_statistics.py` regenerates the five exact cluster sign-flip
+  tests with Holm correction and conditional cluster-bootstrap accuracy intervals.
+* `analysis/reproduce_chaining.py` regenerates fixed-fold outcome metrics from
+  released chaining-exclusion predictions (without claiming to refit the models).
 
-```
-iog-visual-detection/
-├── reproduce.py            Regenerates every reported result TABLE from data/ (no raw images)
-├── data/                   Anonymized, id-keyed derived data (sufficient to reproduce all results)
-│   ├── samples.csv         Per-image: id, label, cluster\_id, folds, LMM \& CLIP zero-shot predictions, phash, md5
-│   ├── provenance\_metadata.csv  Per-image: original width/height/aspect/format/filesize (for the confound ablation)
-│   ├── features\_handcrafted.npy 2519 x 2342 handcrafted feature matrix (row order = samples.csv)
-│   ├── clip\_embeddings\_vitb32.npy 2519 x 512 frozen CLIP ViT-B/32 image embeddings
-│   ├── clip\_embeddings\_vitl14.npy 2519 x 768 frozen CLIP ViT-L/14 image embeddings
-│   ├── clip\_text/          CLIP text-prompt embeddings (zero-shot class \& prompt variants)
-│   └── README.md           Data dictionary
-├── code/                   The exact analysis scripts used to perform the study
-│   ├── 00\_run\_lmm\_detection.py   Query GPT-5 / Claude / Gemini on screenshots -> predictions
-│   ├── 01\_extract\_features.py    Handcrafted features from raw screenshots
-│   ├── 02\_cluster\_and\_split.py   Perceptual-hash near-duplicate clustering + group-aware folds
-│   ├── 03\_run\_clip.py / 03b\_clip\_extra.py  CLIP image/text embeddings \& zero-shot
-│   ├── 04\_eval\_fullset.py        Full-set \& dedup CV (classical, CLIP B/32, LMMs, ensembles)
-│   ├── 04b\_eval\_clip\_l14.py      CLIP ViT-L/14 zero-shot \& linear-probe
-│   ├── 05\_complementarity.py     LMM-missed vs low-cost-model coverage, residual hard core
-│   └── 06\_ablation.py            Leakage (naive vs group split) + provenance (metadata-only) confounds
-├── requirements.txt
-├── LICENSE                 Code: MIT
-├── LICENSE-data            Derived data: CC BY 4.0
-└── DATA\_AVAILABILITY.md    Data/code availability statement
-```
+## Quick start
 
-## Reproducing the results
-
-The released derived data are sufficient to reproduce every reported number **without the
-raw screenshots**. With Python 3.10+:
+Python 3.10+ recommended. Install `pip install -r requirements-analysis.txt` for the offline checks.
+Use `requirements.txt` only for the entire upstream pipeline, which may need
+PyTorch, CLIP and provider SDKs.
 
 ```bash
-pip install -r requirements.txt     # numpy, pandas, scikit-learn
-python reproduce.py
+python analysis/verify_release.py
+python analysis/reproduce_followups.py
+python analysis/reproduce_statistics.py
+python analysis/reproduce_chaining.py
 ```
 
-This regenerates the full-set and deduplicated comparison tables (Accuracy/Precision/Recall/
-F1/Specificity for all methods), the complementarity analysis, and the two ablations, and
-writes `reproduced\_results.json`. Runtime is a few minutes (the RBF-SVM on the full feature
-matrix is the slow step). All folds are reconstructed deterministically (seed 42), so the
-numbers match the paper exactly.
+For the original full ML classifier training evaluation, run `python reproduce.py`.
+This is computationally heavier because it includes five-fold CV for multiple
+classifiers, an RBF-SVM and the handcrafted feature matrix.
 
-`code/` contains the analysis scripts **as run**; their paths reflect the authors' working
-environment and the upstream steps (`00`, `01`, `03`) require the raw screenshots. For
-verification on the released data, use `reproduce.py`.
+## Interpretation and scope
 
-## Notes on inputs and protocol
+The original main-set predictions and the follow-up experiment predictions are
+**not** interchangeable: the latter used distinct samples, batches, and image
+transformation conditions. The main 600-image prompt analysis uses the **570 common
+complete-coverage screenshots** (285 IOG + 285 controls). Exactly three Gemini
+batches had no valid outputs under each of four prompts, leaving 12 incomplete
+model/prompt/batch combinations out of 720.
 
-* **Input standardization (applied to every model).** Before any feature extraction,
-embedding, or model query, each screenshot is standardized identically: decoded,
-resized to a 224x224 square by bicubic interpolation, and re-encoded through a single
-JPEG pass at quality 90. The handcrafted-feature pipeline, CLIP (zero-shot and
-linear-probe), and the three LMMs all receive this standardized image, so capture
-provenance (absolute resolution, aspect ratio, file format) is removed by construction
-for every method. The image-folder inputs to `00\_run\_lmm\_detection.py` and
-`03\_run\_clip.py` are these standardized images (the same standardization implemented
-in `01\_extract\_features.py`).
-* **Deduplicated-set representatives.** For the deduplicated (novel-template) evaluation,
-each near-duplicate cluster contributes one representative, drawn from the cluster's
-majority-label members so the representative's label always matches the label it is
-evaluated under. Of 1,775 clusters, 8 are mixed-label (59 images); this rule affects
-only those clusters' representative selection.
+The square224 condition is from the earlier 160-image P0 follow-up, whereas
+pad224 and pad1024 are from a subsequent 160-image resolution run on the same
+sample IDs. Comparisons thus measure observed input-condition differences, not
+solely the isolated effect of image resolution; providers could internally
+transform images.
 
-## Data availability
+Gemini had identical input token totals (49,680) under pad224 and pad1024.
+This **does not prove** the effective internal image resolution was identical.
+GPT-5's separately reported reasoning-token count was not retained; reported
+output token totals include billable reasoning tokens. Gemini thinking tokens
+are recorded separately from output tokens for cost estimation.
 
-* **Control (general-website) images** are publicly available from the Kaggle datasets cited
-in the paper.
-* **IOG screenshots** were provided by the Korea Racing Authority (KRA) and depict unlicensed
-gambling operations. As third-party data that identify illegal services, they are not
-redistributed here; they are available from the KRA on reasonable request, subject to the
-KRA's terms. See `DATA\_AVAILABILITY.md`.
-* **Derived data** (features, embeddings, labels, fold assignments, predictions) are released
-in `data/` with every site identifier replaced by an opaque id (`img\_00001`, ...). Domains
-never appear in this repository.
+API costs are estimates using explicit assumptions in `cost_rate_assumptions.csv`.
+These figures are neither actual invoices nor guaranteed current provider prices.
+Local-CPU cost (power/hardware) was not monetized.
 
-## Running the LMM detector (`code/00`)
+## Privacy and rights
 
-API keys are read from environment variables; set them before running:
+Raw KRA IOG screenshots, any actual site/domain strings, source image paths,
+API keys, full raw API responses and inaccessible account details are **excluded**.
+All public tables are keyed by opaque `img_XXXXX` identifiers or aggregated counts.
+The code is provided as archival as-run software and may need environment-specific
+paths and legitimate access to raw images for upstream re-extraction.
+All code is subject to the MIT license (`LICENSE`); previously released derived
+content remains under the CC BY 4.0 data license (`LICENSE-data`).
 
-```bash
-export OPENAI\_API\_KEY=...   ANTHROPIC\_API\_KEY=...   GEMINI\_API\_KEY=...
-```
+## Citations and Zenodo
 
-Models used: `gpt-5-2025-08-07`, `claude-sonnet-4-5-20250929`, `gemini-2.5-flash`. The exact
-classification prompt is embedded in the script.
-
-## Third-party software
-
-CLIP (Radford et al., 2021) via OpenCLIP (Ilharco et al.; doi.org/10.5281/zenodo.18794821),
-and scikit-learn (Pedregosa et al., 2011).
-
-## Citation
-
-If you use this code or data, please cite the paper (citation to be added on acceptance) and
-this archive.
-
+This package derives from the earlier public record DOI
+[10.5281/zenodo.20636926](https://doi.org/10.5281/zenodo.20636926).
+The updated version DOI is **not assigned until deposition**, and must be inserted
+in the final paper and rebuttal only after upload and verification.
+See `CHANGELOG.md`, `DATA_AVAILABILITY.md`, and `followups/README.md`.

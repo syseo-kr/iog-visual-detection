@@ -1,0 +1,13 @@
+provider,prompt_id,n,accuracy_pct,precision_pct,recall_pct,f1_pct
+claude,P0_original,570,82.6316,96.0396,68.0702,79.6715
+claude,P1_concise,570,82.2807,96.4646,67.0175,79.089
+claude,P2_structured,570,81.0526,97.3262,63.8596,77.1186
+claude,P3_paraphrase,570,80.1754,95.7447,63.1579,76.1099
+gemini,P0_original,570,79.8246,98.2955,60.7018,75.0542
+gemini,P1_concise,570,80.1754,97.7778,61.7544,75.6989
+gemini,P2_structured,570,80.1754,97.7778,61.7544,75.6989
+gemini,P3_paraphrase,570,80.1754,99.4253,60.7018,75.3813
+openai,P0_original,570,78.0702,100.0,56.1404,71.9101
+openai,P1_concise,570,77.0175,99.359,54.386,70.2948
+openai,P2_structured,570,76.3158,100.0,52.6316,68.9655
+openai,P3_paraphrase,570,77.7193,100.0,55.4386,71.3318

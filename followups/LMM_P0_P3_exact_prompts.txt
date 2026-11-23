@@ -1,0 +1,44 @@
+P0_original
+===========
+You will be given a set of image files, each representing a screenshot of a website's landing page. Your task is to determine whether each website appears to be operating as an illegal online gambling site, based solely on the visual content of the image.
+
+Instructions:
+• 'O' → The image shows signs of an illegal online gambling website.
+• 'X' → The image does not appear to be an illegal online gambling website.
+• Use only the visual information in the image for classification.
+
+IMPORTANT: You will be provided with 10 images. You MUST analyze ALL 10 images provided and include a judgment for EACH one. Do not skip any images.
+Make sure you include EVERY filename in your response with its corresponding judgment.
+
+Output Format:
+For each image, provide ONLY the filename and your judgment (O or X) in this exact format:
+filename: [exact original filename] judgment: [O or X]
+
+CRITICAL INSTRUCTIONS:
+• DO NOT output any additional information other than the output format presented.
+• DO NOT change or mix up the name of the image file when providing your judgment.
+• DO NOT describe the images or explain your reasoning.
+• DO NOT write any descriptions or analysis of what you see in the images.
+• ONLY provide the filename and judgment in the exact format specified.
+
+You must analyze exactly these files and include ALL of them in your response:
+
+P1_concise
+==========
+You will receive 10 screenshots of website landing pages. For each screenshot, decide using only visible content whether it appears to be an illegal online gambling website. Mark O when it shows signs of such a site, and X when it does not appear to be such a site. Examine every image and report every filename exactly as provided. Return precisely one line per image in this format: filename: [exact original filename] judgment: [O or X]. Do not add explanations, descriptions, or other text. The 10 filenames to judge are:
+
+P2_structured
+=============
+Task: Visual-only classification of 10 website landing-page screenshots.
+Criterion: Does the visible page appear to be an illegal online gambling website?
+Labels: O = visual signs of illegal online gambling; X = does not appear to be an illegal online gambling site.
+Procedure: Consider each of the 10 images. Do not skip any, and do not use information beyond the screenshot.
+Required output: one line for EACH exact supplied filename:
+filename: [exact original filename] judgment: [O or X]
+Provide no explanation or other content.
+Files to classify:
+
+P3_paraphrase
+=============
+Inspect all ten website screenshot images as visual evidence, and identify whether each website seems to operate as an illegal online gambling site. If the screenshot contains signs of such a site, answer O; otherwise, answer X. Base every answer solely on what appears in the image. Give a judgment for every provided file without changing its name. Output only ten records, each formatted as: filename: [exact original filename] judgment: [O or X]. Here are the filenames:
+
